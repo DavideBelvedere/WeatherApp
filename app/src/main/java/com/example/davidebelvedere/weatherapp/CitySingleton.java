@@ -19,7 +19,7 @@ public class CitySingleton {
         return CITIES;
     }
 
-    public void setContactArray(List<City> array) {
+    public void setCityArray(List<City> array) {
         CITIES = array;
     }
 

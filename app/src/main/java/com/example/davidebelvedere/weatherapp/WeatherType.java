@@ -2,6 +2,7 @@ package com.example.davidebelvedere.weatherapp;
 
 class WeatherType {
     private String description;
+    private String icon;
 
     public String getDescription() {
         return description;
@@ -9,5 +10,13 @@ class WeatherType {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }

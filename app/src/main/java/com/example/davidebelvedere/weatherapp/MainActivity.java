@@ -1,8 +1,11 @@
 package com.example.davidebelvedere.weatherapp;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,9 +33,19 @@ public class MainActivity extends AppCompatActivity {
         myRecyclerView.setLayoutManager(myLayoutManager);
 
 
+
         customAdapter = new MyRecyclerAdapter(Utility.getDataSourceItemList(), this);
 
         myRecyclerView.setAdapter(customAdapter);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Utility.REQUEST_CODE);
+
+        } else {
+            Utility.getDataSourceItemList().get(0).setNome(Utility.getCurrentCityName(MainActivity.this));
+            customAdapter.notifyItemChanged(0);
+        }
 
     }
 
@@ -60,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                         .setPositiveButton("Aggiungi", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Utility.addItem(new City(String.valueOf(newCityName.getText())));
-                                customAdapter.updateData();
+                                customAdapter.notifyItemInserted(Utility.getCount());
 
                             }
                         }).setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
@@ -74,4 +88,18 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == Utility.REQUEST_CODE) {
+            if(grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+               Utility.getDataSourceItemList().get(0).setNome(Utility.getCurrentCityName(MainActivity.this));
+               customAdapter.notifyItemChanged(0);
+            } else {
+                Toast.makeText(this, "Non ho il permesso per accedere alla tua posizione", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
 }

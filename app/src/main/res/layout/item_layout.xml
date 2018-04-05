@@ -3,40 +3,153 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="300dp"
+    >
 
     <!-- A CardView that contains a TextView -->
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_margin="2dp"
+        android:layout_height="match_parent"
         card_view:cardCornerRadius="2dp"
         card_view:cardElevation="1dp"
-        card_view:cardUseCompatPadding="true">
+        card_view:cardUseCompatPadding="true"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="2dp"
-            android:layout_gravity="center_vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_city"
-                />
+            android:id="@+id/background">
 
-            <TextView
-                android:id="@+id/city_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                tools:text="Elmento n°x" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="2dp">
 
+                <TextView
+                    android:id="@+id/city_hour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="18dp"
+                    android:textColor="@color/white"
+                    tools:text="Elmento n°x" />
+
+                <TextView
+                    android:id="@+id/city_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="5dp"
+                    android:textSize="18dp"
+                    tools:text="12/09/2018" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="2dp"
+                >
+
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:id="@+id/imgWeather" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+
+                android:orientation="horizontal"
+                android:padding="2dp"
+
+                android:layout_gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/city_temp_max"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"
+                    tools:text="18°" />
+                <TextView
+                    android:id="@+id/slash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@+id/city_temp_max"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:text="/"
+                    />
+                <TextView
+                    android:id="@+id/city_temp_min"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@+id/slash"
+                    android:textSize="18dp"
+                    android:text="5°"
+
+                    />
+                <TextView
+                    android:id="@+id/city_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="5dp"
+
+                    android:textSize="18dp"
+
+                    tools:text="Cloudy" />
+
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
+
+                android:orientation="horizontal"
+                android:padding="2dp"
+                android:layout_gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/city_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true"
+                    android:textSize="27dp"
+                    tools:text="Es: New York" />
+
+
+
+            </RelativeLayout>
         </LinearLayout>
 
 
